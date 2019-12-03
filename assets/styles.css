@@ -1,0 +1,96 @@
+:root {
+	--azul-oscuro: #353066;
+	--azul-claro: #36c7e280;
+	--fondo: #eaf2ff;
+	--diametro: 65vw;
+}
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: 'Indie Flower', cursive;
+}
+.page {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	background-color: var(--fondo);
+	border-top: 2em solid var(--azul-claro);
+	border-bottom: 2em solid var(--azul-claro);
+	padding: 3em 7em 2em 5em;
+}
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.profile-tag {
+	display: flex;
+	align-items: center;
+	height: 15vh;
+}
+.profile-tag .profile-image {
+	height: 90%;
+	border-radius: 50%;
+	border: 2px solid var(--azul-oscuro);
+	margin-right: 1em;
+}
+.profile-tag .profile-name {
+	font-weight: bold;
+	font-size: 2.5em;
+	text-align: center;
+}
+.profile-tag .profile-sub {
+	color: gray;
+	text-align: center;
+	font-size: 1.25em;
+}
+.nav-link {
+	text-decoration: none;
+	color: var(--azul-oscuro);
+	font-weight: bold;
+	font-size: 2em;
+	padding: 0.5em 1em;
+	background-color: var(--azul-claro);
+	opacity: 1;
+	border-radius: 45px;
+	box-shadow: 0 2px 3px black;
+	transition: all 0.4s;
+}
+.nav-link:hover {
+	opacity: 0.5;
+}
+.text-container {
+	padding: 2.5em 0 0 5em;
+}
+.main-text {
+	font-weight: bold;
+	font-size: 2em;
+	padding-bottom: 0.5em;
+}
+.secondary-text {
+	font-size: 1.25em;
+	padding-bottom: 0.75em;
+}
+.padding {
+	padding-left: 22.5em;
+}
+.emoji-hand * {
+	transform: rotate(45deg);
+}
+.contact {
+	display: flex;
+	justify-content: space-between;
+}
+/*
+.slide {
+	position: absolute;
+	top: 0;
+	right: 0;
+	transform: translate(50%, calc((var(--diametro) / 2) * -1));
+	width: var(--diametro);
+	height: var(--diametro);
+	background-color: blue;
+	border-radius: 50%;
+}
+*/
