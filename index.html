@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content=""/>
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="./images/logo_ms.png" type="image/png">
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+    <link href="./css/links_social_network.css" rel="stylesheet">
+
+    <title>Agroindustriales MS</title>
+<style>
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+.slideshow-container {
+	height: 40vh;
+	width: 100%;
+	color: white;
+	position: relative;
+	overflow: hidden;	
+}
+.slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: green;
+}
+.numbertext {
+	padding: 1rem;
+}
+.caption {
+	position: absolute;
+	bottom: 1.5rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.slide-control {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	padding: 1rem 1.2rem;
+	border-radius: 5px;
+	font-size: 1.5rem;
+}
+.prev {
+	left: 0;
+}
+.next {
+	right: 0;
+}
+.slide-control:hover {
+	background-color: black;
+}
+.dots-container {
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.dot {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background-color: black;
+	border-radius: 50%;
+	margin: 0 .4rem;
+	cursor: pointer;
+}
+.dot.active {
+	background-color: gray;
+}
+.dot:hover {
+	background-color: gray;
+}
+.next-in, .next-out, .prev-in, .prev-out, .fade {
+	animation-duration: .8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: both;
+	animation-timing-function: linear;
+}
+.next-in {
+	animation-name: next-in;
+}
+.next-out {
+	animation-name: next-out;
+}
+.prev-in {
+	animation-name: prev-in;
+}
+.prev-out {
+	animation-name: prev-out;
+}
+.fade {
+	animation-name: fade;
+	animation-duration: .4s;
+}
+@keyframes next-in {
+	from{ transform: translateX(100%); }
+	to{ transform: translateX(0%); }
+}
+@keyframes next-out {
+	from{ transform: translateX(0%); }
+	to{ transform: translateX(-100%); }
+}
+@keyframes prev-in {
+	from{ transform: translateX(-100%); }
+	to{ transform: translateX(0%); }
+}
+@keyframes prev-out {
+	from{ transform: translateX(0%); }
+	to{ transform: translateX(100%); }
+}
+@keyframes fade {
+	from{ opacity: 0; }
+	to{ opacity: 1; }
+}
+</style>
+</head>
+<body>
+ 
+<div class="slideshow-container">
+	<div class="slide">
+		<div class="numbertext">1 / 5</div>
+		<div class="caption">Caption Text</div>
+	</div>
+
+	<div class="slide">
+		<div class="numbertext">2 / 5</div>
+		<div class="caption">Caption Text</div>
+	</div>
+
+	<div class="slide">
+		<div class="numbertext">3 / 5</div>
+		<div class="caption">Caption Text</div>
+	</div>
+	<div class="slide">
+		<div class="numbertext">4 / 5</div>
+		<div class="caption">Caption Text</div>
+	</div>
+	<div class="slide">
+		<div class="numbertext">5 / 5</div>
+		<div class="caption">Caption Text</div>
+	</div>
+  
+	<a class="slide-control prev" id="prev">&#10094;</a>
+	<a class="slide-control next" id="next">&#10095;</a>
+
+	<div class="dots-container">
+	  <span class="dot"></span>
+	  <span class="dot"></span>
+	  <span class="dot"></span>
+	  <span class="dot"></span>
+	  <span class="dot"></span>
+	</div> 
+
+</div>
+
+<script>
+	
+var prevButton = document.getElementById("prev");
+var nextButton = document.getElementById("next");
+var slides = document.getElementsByClassName("slide");
+var dots = document.getElementsByClassName("dot");
+var slideIndex = 1;
+var prevIndex = 0;
+const clickIntervalTime = 5000;
+let clickInterval = setInterval(function(){ nextButton.click() }, clickIntervalTime);
+
+function removeClasses(){
+	for (i = 0; i < slides.length; i++) {
+		slides[i].className = slides[i].className.replace(" next-in", "");
+        slides[i].className = slides[i].className.replace(" next-out", "");
+        slides[i].className = slides[i].className.replace(" prev-in", "");
+        slides[i].className = slides[i].className.replace(" prev-out", "");
+        slides[i].className = slides[i].className.replace(" fade", "");
+    }
+}
+
+showSlides(slideIndex, prevIndex);
+
+// Iterador dentro de un listener asignado por el mismo iterador
+for (i = 0; i < dots.length; i++) (function(i)
+{
+    dots[i].addEventListener('click', function currentSlide(){
+
+  		showSlides(slideIndex = i + 1, prevIndex  = i + 1);
+		removeClasses();
+		slides[slideIndex-1].className += " fade";
+    });             
+
+}) (i);
+
+nextButton.onclick = function next() {
+	prevIndex = slideIndex;
+	showSlides(slideIndex += 1, prevIndex);
+	removeClasses();
+    slides[slideIndex-1].className += " next-in";
+    slides[prevIndex-1].className += " next-out";
+    
+    clearInterval(clickInterval);
+    clickInterval = setInterval(function(){ nextButton.click() }, clickIntervalTime);
+}
+
+prevButton.onclick = function prev() {
+	prevIndex = slideIndex;
+	showSlides(slideIndex -= 1, prevIndex);
+	removeClasses();
+    slides[slideIndex-1].className += " prev-in";
+    slides[prevIndex-1].className += " prev-out";
+}
+
+function showSlides(n, p) {
+  var i;
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  slides[slideIndex-1].style.display = "block";
+
+  if(prevIndex-1 === -1){
+  	slides[0].style.display = "block";
+  } else { slides[prevIndex-1].style.display = "block"; }
+
+  dots[slideIndex-1].className += " active";
+}
+
+</script>
+</body>
+</html>
